@@ -1,0 +1,75 @@
+
+    <!-- Ec breadcrumb start -->
+    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row ec_breadcrumb_inner">
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="ec-breadcrumb-title">Track Order</h2>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <!-- ec-breadcrumb-list start -->
+                            <ul class="ec-breadcrumb-list">
+                                <li class="ec-breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="ec-breadcrumb-item active">Track</li>
+                            </ul>
+                            <!-- ec-breadcrumb-list end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ec breadcrumb end -->
+
+    <!-- Ec Track Order section -->
+    <section class="ec-page-content section-space-p">
+        <div class="container">
+        @if (currentStatus != "PENDING") {
+            <!-- Track Order Content Start -->
+            <div class="ec-trackorder-content col-md-12">
+                <div class="ec-trackorder-inner">
+                    <div class="ec-trackorder-top">
+                        <h2 class="ec-order-id">order #{{order.id}}</h2>
+                        <div class="ec-order-detail">
+                            <div>Expected arrival {{expectedArrival | date}}</div>
+                            <div>Grasshoppers <span>{{order.billNo}}</span></div>
+                        </div>
+                    </div>
+                    <div class="ec-trackorder-bottom">
+                        <div class="ec-progress-track">
+                            <ul id="ec-progressbar">
+                                    <li class="step0" [ngClass]="{'active': isActive('ACCEPTED')}"><span class="ec-track-icon"> <img
+                                                src="assets/images/icons/track_1.png" alt="track_order"></span><span
+                                            class="ec-progressbar-track"></span><span class="ec-track-title">order
+                                            <br>accepted</span></li>
+                                    <li class="step0" [ngClass]="{'active': isActive('PROCESSING')}"><span class="ec-track-icon"> <img
+                                                src="assets/images/icons/track_2.png" alt="track_order"></span><span
+                                            class="ec-progressbar-track"></span><span class="ec-track-title">order
+                                                <br>packing</span></li>
+                                    <li class="step0" [ngClass]="{'active': isActive('SHIPPED')}"><span class="ec-track-icon"> <img
+                                                src="assets/images/icons/track_3.png" alt="track_order"></span><span
+                                            class="ec-progressbar-track"></span><span class="ec-track-title">order
+                                                <br>shipped</span></li>
+                                    <li class="step0" [ngClass]="{'active': isActive('OFD')}"><span class="ec-track-icon"> <img
+                                                src="assets/images/icons/track_4.png" alt="track_order"></span><span
+                                            class="ec-progressbar-track"></span><span class="ec-track-title">order <br>enroute</span></li>
+                                    <li class="step0" [ngClass]="{'active': isActive('DELIVERED')}"><span class="ec-track-icon"> <img
+                                                src="assets/images/icons/track_5.png" alt="track_order"></span><span
+                                            class="ec-progressbar-track"></span><span class="ec-track-title">order
+                                                <br>arrived</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }@else {
+            <div class="alert alert-secondary text-center">
+                <h5 class="text-success">We will accepct your order soon. Thanks for ordering from us. ♥️</h5>
+            </div>
+        }
+            <!-- Track Order Content end -->
+        </div>
+    </section>
+    <!-- End Track Order section -->

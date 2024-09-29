@@ -1,0 +1,68 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <form >
+        <div class="container-fluid">
+            @if (isSuccess && isSuccess != undefined) {
+                <div class="alert alert-success d-flex align-items-center justify-content-between" role="alert">
+                    <div><i class="fa-regular text-primary fa-circle-check"></i> {{isEditMode ? 'Updated Successfully' : 'Added Successfully'}}</div>
+                    <button (click)="isSuccess = !isSuccess" class="btn btn-danger"><i class="fas fa-xmark"></i></button>
+                </div>
+            }
+            @if (error) {
+                <div class="alert alert-danger d-flex align-items-center justify-content-between" role="alert">
+                    <div>
+                        @for (err of errorMessage; track $index) {
+                            
+                            <p><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;{{err}}</p>
+                        }
+                    </div>
+                    <button (click)="error = !error" class="btn btn-danger"><i class="fas fa-xmark"></i></button>
+                </div>
+            }
+            <div class="card">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold h5 text-primary">{{isEditMode ? 'Edit Category' : 'Add Category'}}</h6>
+                    <a routerLink="/admin/thirdCategoryList" routerLinkActive="router-link-active"  class="btn btn-danger "><i class="fa fa-arrow-left pr-2"></i>Back</a>
+                </div>
+                <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label>Category</label>
+                        <select (change)="getSubCatList(thirdCatReq.catId)" [(ngModel)]="thirdCatReq.catId" class="form-control mt-2" name="Category" id="Category">
+                            <option value="0">-- Select Category --</option>
+                            @for (cat of catList.content; track $index) {
+                                <option value="{{cat.id}}">{{cat.category}}</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Sub Category</label>
+                        <select [(ngModel)]="thirdCatReq.subCatId" class="form-control mt-2" name="SubCategory" id="SubCategory">
+                            @if (subCatList.length == 0) {
+                                <option value="0">-- Select Category First --</option>
+                            }@else {
+                                <option value="0">-- Select Sub Category --</option>
+                            }
+                            @for (subCat of subCatList; track $index) {
+                                <option value="{{subCat.id}}">{{subCat.subCategory}}</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Third Category Name</label>
+                        <input [(ngModel)]="thirdCatReq.thirdCategroy" type="text" value="" name="txtThirdCategory" id="txtThirdCategory" class="form-control mt-2">
+                    </div>
+                    <div class="form-group">
+                        <label for="Status">Active</label>
+                        <input type="checkbox" [(ngModel)]="thirdCatReq.active" class="form-check-input ms-2" name="Status" id="Status">
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button (click)="submitForm()" type="submit" class="btn btn-primary btn-lg" name="btnSave"><i class="fa fa-save"></i> {{isEditMode ? 'Update' : 'Save'}}</button>
+                    <a routerLink="/admin/subCategoryList" class="btn btn-danger btn-lg ms-2"><i class="fa fa-times"></i> Cancle</a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+<!-- /.container-fluid -->

@@ -1,0 +1,34 @@
+
+    <!-- Start Register -->
+    <section class="ec-page-content section-space-p">
+      @if(error){
+        <div class="alert alert-danger text-center">  
+          @for (err of errorMessage; track $index) {
+            <h6>{{err}}</h6>
+          }
+        </div>
+      }
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12 text-center">
+                  <div class="section-title">
+                      <h2 class="ec-bg-title">Verify Account</h2>
+                      <h2 class="ec-title">Verify Account</h2>
+                      <p class="sub-title mb-3">Best place to buy and sell digital products</p>
+                  </div>
+              </div>
+              <div class="ec-register-wrapper">
+                  <div class="ec-register-container">
+                      <div class="ec-register-form">
+                        <code-input [isCodeHidden]="false"
+                        [codeLength]="6"
+                          [code]="'number'"
+                        (codeCompleted)="onCodeCompleted($event)">
+                        </code-input>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- End Register -->

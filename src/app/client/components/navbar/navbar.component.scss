@@ -1,0 +1,20 @@
+.searchResults{
+    z-index: 10;
+    background: #3474d4;
+    width: 100%;
+    border-radius : 0 0 5px 5px;
+}
+.searchResults a{
+    width: 100%;
+    display: block;
+    padding: 10px 15px;
+    font-weight: 500;
+    color: #fff;
+}
+.searchResults a:hover{
+    background: rgb(0, 0, 0);
+}
+.searchResults hr{
+    margin: 0;
+}
+

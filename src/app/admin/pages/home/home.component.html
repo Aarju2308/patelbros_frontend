@@ -1,0 +1,174 @@
+
+
+<div id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Patel Bros</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="/admin">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed pointer" (click)="this.isCategoryOpen = !this.isCategoryOpen" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Categories</span>
+                </a>
+                <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" [ngClass]="{'show': isCategoryOpen}" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">All Categories:</h6>
+                        <a class="collapse-item" [routerLink]="['categoryList']" routerLinkActive="router-link-active" >Category</a>
+                        <a class="collapse-item" [routerLink]="['subCategoryList']" >SubCategory</a>
+                        <a class="collapse-item" [routerLink]="['thirdCategoryList']" >ThirdCategory</a>
+                    </div>
+                </div>
+            </li>
+
+             <!-- Nav Item - Brands -->
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/brandList">
+                    <i class="fa-regular text-light fa-copyright"></i>
+                    <span>Brands</span></a>
+            </li>
+
+             <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/productList">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span>Products</span></a>
+            </li>
+
+           
+
+            
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Users & Orders
+            </div>
+
+             <!-- Nav Item - Brands -->
+             <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/users">
+                    <i class="fa-regular text-light fa-user"></i>
+                    <span>Users</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/orders">
+                    <i class="fa-solid text-light fa-box"></i>
+                    <span>Orders</span></a>
+            </li>
+           
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link text-danger dropdown-toggle" target="_blank" href="http://localhost:1080" id="messagesDropdown" role="button">
+                                <i class="fas fa-envelope fa-fw"></i>
+                                Check Emails
+                            </a>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="btn btn-danger mt-3" (click)="logout()" id="userDropdown">
+                                <i class="fas fa-door-open"></i>
+                                Logout
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <router-outlet></router-outlet>
+                    
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Patel Bros 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../adminfiles/vendor/jquery/jquery.min.js"></script>
+    <script src="../adminfiles/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../adminfiles/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+   
+</div>

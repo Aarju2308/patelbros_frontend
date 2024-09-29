@@ -1,0 +1,219 @@
+    <!-- Ec breadcrumb start -->
+    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row ec_breadcrumb_inner">
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="ec-breadcrumb-title">Cart</h2>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <!-- ec-breadcrumb-list start -->
+                            <ul class="ec-breadcrumb-list">
+                                <li class="ec-breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="ec-breadcrumb-item active">Cart</li>
+                            </ul>
+                            <!-- ec-breadcrumb-list end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ec breadcrumb end -->
+
+@if (error) {
+    <div class="alert alert-danger d-flex justify-content-between" role="alert">
+        <p><strong>Something isn't working!</strong> Try logging in or contact admin.</p>
+        <button type="button" class="btn btn-primary" [routerLink]="['/login']" routerLinkActive="router-link-active"  data-bs-dismiss="alert">Login</button>
+    </div>
+}@else if (noUniqueId) {
+    <div class="alert alert-primary d-flex justify-content-between" role="alert">
+        <p><strong>Not Logged In !</strong> You need to login to view your cart.</p>
+        <button type="button" class="btn btn-primary" [routerLink]="['/login']" routerLinkActive="router-link-active"  data-bs-dismiss="alert">Login</button>
+    </div>
+}@else if (cartResponse.length == 0) {
+    <div class="col-md-12 text-center">
+        <div class="section-title">
+            <h2 class="ec-bg-title"> Cart is empty</h2>
+            <h2 class="ec-title"> Cart is empty</h2>
+            <p class="sub-title mb-3">Please add some products in your cart <a [routerLink]="['/products','1']" class="text-primary">Browse Products</a> </p>
+        </div>
+    </div>
+}
+@else {
+    <!-- Ec cart page -->
+    <section class="ec-page-content section-space-p">
+        <div class="container">
+            <div class="row">
+                <div class="ec-cart-leftside col-lg-8 col-md-12 ">
+                    <!-- cart content Start -->
+                    <div class="ec-cart-content">
+                        <div class="ec-cart-inner">
+                            <div class="row">
+                                <form action="#">
+                                    <div class="table-content cart-table-content">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Product</th>
+                                                    <th>Price</th>
+                                                    <th style="text-align: center;">Quantity</th>
+                                                    <th>Total</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @for (cart of cartResponse; track $index) {
+            
+                                                    <tr>
+                                                        <td data-label="Product" class="ec-cart-pro-name"><a
+                                                                href="product-left-sidebar.html"><img
+                                                                    class="ec-cart-pro-img mr-4"
+                                                                    src="{{getImage(cart.product?.image)}}" alt="" />{{cart.product?.name}}</a></td>
+                                                        <td data-label="Price" class="ec-cart-pro-price"><span
+                                                                class="amount">{{cart.product?.price | currency}}</span></td>
+                                                        <td data-label="Quantity" class="ec-cart-pro-qty" style="text-align: center;">
+                                                            <div class="cart-qty-plus-minus">
+                                                                <input class="cart-plus-minus" type="text" disabled name="cartqtybutton" value="{{cart.quantity}}">
+                                                                <div class="ec_cart_qtybtn">
+                                                                    <div (click)="addQty(cart)" class="inc ec_qtybtn">+</div>
+                                                                    <div (click)="minusQty(cart)" class="dec ec_qtybtn">-</div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td data-label="Total" class="ec-cart-pro-subtotal">{{cart.total | currency}}</td>
+                                                        <td data-label="Remove" class="ec-cart-pro-remove">
+                                                            <a (click)="deleteCart(cart.id,cart.product?.name)"><i class="ecicon eci-trash-o"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                            
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="ec-cart-update-bottom">
+                                                <a routerLink="../products/1">Continue Shopping</a>
+                                                <button (click)="checkout()" class="btn btn-primary">Pay Now & Check Out</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--cart content End -->
+                </div>
+                <!-- Sidebar Area Start -->
+                <div class="ec-cart-rightside col-lg-4 col-md-12">
+                    <div class="ec-sidebar-wrap">
+                        <!-- Sidebar Summary Block -->
+                        <div class="ec-sidebar-block">
+                            <div class="ec-sb-title">
+                                <h3 class="ec-sidebar-title">Summary</h3>
+                            </div>
+                            <div class="ec-sb-block-content">
+                                <h4 class="ec-ship-title">Estimate Shipping</h4>
+                                <div class="ec-cart-form">
+                                    <p>Enter your destination to get a shipping estimate</p>
+                                    <form action="#" method="post">
+                                        <span class="ec-cart-wrap">
+                                            <label>Country *</label>
+                                            <span class="ec-cart-select-inner">
+                                                <select (change)="getAllStatesByCountry($event)" name="ec_cart_country" id="ec-cart-select-country"
+                                                    class="ec-cart-select">
+                                                    <option selected="" disabled="">-- Select Country --</option>
+                                                    @for (country of countries; track $index) {
+                                                        @if (country.active) {
+                                                            <option value="{{country.id}}" >{{country.name}}</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </span>
+                                        </span>
+                                        <span class="ec-cart-wrap">
+                                            <label>State/Province</label>
+                                            <span class="ec-cart-select-inner">
+                                                <select (change)="getAllCitiesByState($event)" name="ec_cart_state" id="ec-cart-select-state"
+                                                    class="ec-cart-select">
+                                                    @if (states.length <= 0) {
+                                                        <option selected="" disabled="">Please Select a Country first</option>
+                                                    }@else {
+                                                        <option selected="" disabled="">-- Select State --</option>
+                                                        @for (state of states; track $index) {
+                                                            <option  value="{{state.id}}">{{state.name}}</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </span>
+                                        </span>
+                                        <span class="ec-cart-wrap">
+                                            <label>City</label>
+                                            <span class="ec-cart-select-inner">
+                                                <select [(ngModel)]="paymentReq.addressId" (change)="getCityInfo($event)" name="ec_cart_state" id="ec-cart-select-state"
+                                                    class="ec-cart-select">
+                                                    @if (cities.length <= 0) {
+                                                        <option selected="" value="0" disabled="">Please Select a Country first</option>
+                                                    }@else {
+                                                        <option selected="" value="0" disabled="">-- Select City --</option>
+                                                        @for (city of cities; track $index) {
+                                                            <option value="{{city.id}}">{{city.name}}</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </span>
+                                        </span>
+                                        <span class="ec-cart-wrap">
+                                            <label>Zip/Postal Code</label>
+                                            <input [(ngModel)]="postCode" disabled type="text" name="postalcode" placeholder="Zip/Postal Code">
+                                        </span>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="ec-sb-block-content">
+                                <div class="ec-cart-summary-bottom">
+                                    <div class="ec-cart-summary">
+                                        <div>
+                                            <span class="text-left">Sub-Total</span>
+                                            <span class="text-right">{{subTotal | currency}}</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-left">Delivery Charges</span>
+                                            <span class="text-right">{{deliveryCharges | currency}}</span>
+                                        </div>
+                                        <div class="ec-cart-summary-total">
+                                            <span class="text-left">Total Amount</span>
+                                            <span class="text-right">{{total | currency}}</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sidebar Summary Block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @if (showPaymentModal) {
+    <div id="ec-popnews-bg" class="d-block" [ngClass]="{'d-block': showPaymentModal}"></div>
+    <div id="ec-popnews-box"  class="d-block"  [ngClass]="{'d-block': showPaymentModal}">
+        <div id="ec-popnews-close"><i (click)="showPaymentModal = false" class="ecicon eci-close"></i></div>
+        <div class="row">
+            <div class="col-md-6 disp-no-767">
+                <img src="assets/images/common/payment-loading.jpg" alt="Payment-Loading">
+            </div>
+            <div class="col-md-6">
+                <div id="ec-popnews-box-content">
+                    <h2>Loading Payment Page</h2>
+                    <p>Hold tight. We are fetchng payment page for you. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+}

@@ -1,0 +1,68 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <!-- <h1 class="h3 mb-2 text-gray-800">Categories</h1> -->
+    
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex align-items-center justify-content-between">
+            <h4 class="m-0 font-weight-bold text-primary">Brands</h4>
+            <a routerLink="../addBrand" routerLinkActive="router-link-active"  class="btn btn-primary"><i class="fas fa-plus"></i>&nbsp;Add Brand</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Logo</th>
+                            <th>Brand</th>
+                            <th>Active</th>
+                            <th class="text-center" style="color: #6610f2;" colspan="2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (brand of brandsList.content; track $index) {
+                            <tr>
+                                <td>{{brand.id}}</td>
+                                <td><img src="{{getBrandLogo(brand.logo)}}" style="width: 50px; height: 50px; object-fit: contain;" srcset=""></td>
+                                <td>{{brand.brand}}</td>
+                                <td>{{brand.active ? 'Active' : 'De-Active'}}</td>
+                                <td><button (click)="edit(brand.id)" class="btn btn-warning"><i class="fas fa-edit"></i></button></td>
+                                <td><button (click)="delete(brand.id,brand.brand)" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination d-flex justify-content-center">
+                      <li class="page-item">
+                        <a class="page-link" [ngClass]="{'disabled': brandsList.first}" (click)="firstPage()" aria-label="First">
+                            <i class="fas fa-angles-left"></i>
+                        </a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" [ngClass]="{'disabled': brandsList.first}" (click)="previousPage()" aria-label="Previous">
+                            <i class="fas fa-angle-left"></i>
+                        </a>
+                      </li>
+                      @for (i of [].constructor(brandsList.totalPages); track $index) {
+                        <li class="page-item"><a class="page-link" [ngClass]="{'active': $index == page}"  (click)="goToPage($index)">{{$index + 1}}</a></li>
+                      }
+                      <li class="page-item">
+                        <a class="page-link" [ngClass]="{'disabled': brandsList.last}" (click)="nextPage()" aria-label="Next">
+                          <i class="fas fa-angle-right"></i>
+                        </a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" [ngClass]="{'disabled': brandsList.last}" (click)="lastPage()" aria-label="Last">
+                          <i class="fas fa-angles-right"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+            </div>
+        </div>
+    </div>
+
+</div>

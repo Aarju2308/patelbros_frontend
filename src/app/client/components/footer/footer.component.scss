@@ -1,0 +1,24 @@
+.creator {
+    color: #3498db; /* Initial link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make the text bold */
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+  }
+  
+  .creator:hover {
+    color: #3c72e7; /* Change color on hover */
+  }
+  
+  .creator::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #3c72e7; /* Line color */
+    transition: width 0.3s ease; /* Animate width */
+  }
+  
+  .creator:hover::after {
+    width: 100%; /* Expand underline on hover */
+  }
+  

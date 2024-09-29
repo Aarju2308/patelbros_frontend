@@ -1,0 +1,284 @@
+<!-- Header start  -->
+<header class="ec-header">
+     <!--Ec Header Top Start -->
+     <div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Header Top social Start -->
+                <div class="col text-left header-top-left d-none d-lg-block">
+                    <div class="header-top-social">
+                        <span class="social-text text-upper">Follow us on:</span>
+                        <ul class="mb-0">
+                            <li class="list-inline-item"><a class="hdr-facebook" href="#"><i
+                                        class="ecicon eci-facebook"></i></a></li>
+                            <li class="list-inline-item"><a class="hdr-twitter" href="#"><i
+                                        class="ecicon eci-twitter"></i></a></li>
+                            <li class="list-inline-item"><a class="hdr-instagram" href="#"><i
+                                        class="ecicon eci-instagram"></i></a></li>
+                            <li class="list-inline-item"><a class="hdr-linkedin" href="#"><i
+                                        class="ecicon eci-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Header Top social End -->
+                <!-- Header Top Message Start -->
+                <div class="col text-center header-top-center">
+                    <div class="header-top-message text-upper">
+                        <span>Free Shipping</span>This Week Order Over - $75
+                    </div>
+                </div>
+                <!-- Header Top Message End -->
+                <!-- Header Top Language Currency -->
+                <div class="col header-top-right d-none d-lg-block">
+                    <div class="header-top-lan-curr d-flex justify-content-end">
+                        <!-- Currency Start -->
+                        <div class="header-top-curr dropdown">
+                            <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Currency <i
+                                    class="ecicon eci-caret-down" aria-hidden="true"></i></button>
+                            <ul class="dropdown-menu">
+                                <li class="active"><a class="dropdown-item" href="#">USD $</a></li>
+                                <li><a class="dropdown-item" href="#">EUR €</a></li>
+                            </ul>
+                        </div>
+                        <!-- Currency End -->
+                        <!-- Language Start -->
+                        <div class="header-top-lan dropdown">
+                            <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Language <i
+                                    class="ecicon eci-caret-down" aria-hidden="true"></i></button>
+                            <ul class="dropdown-menu">
+                                <li class="active"><a class="dropdown-item" href="#">English</a></li>
+                                <li><a class="dropdown-item" href="#">Italiano</a></li>
+                            </ul>
+                        </div>
+                        <!-- Language End -->
+
+                    </div>
+                </div>
+                <!-- Header Top Language Currency -->
+                <!-- Header Top responsive Action -->
+                <div class="col d-lg-none ">
+                    <div class="ec-header-bottons">
+                        <!-- Header User Start -->
+                        <div class="ec-header-user dropdown">
+                            <button (click)="showUser = !showUser" class="dropdown-toggle" data-bs-toggle="dropdown"><i
+                                    class="fi-rr-user"></i></button>
+                            <ul class="dropdown-menu dropdown-menu-right" [ngClass]="{'show': showUser}">
+                                @if (!isTokenValid) {
+                                    <li><a class="dropdown-item" [routerLink]="['register']">Register</a></li>
+                                    <li><a class="dropdown-item" [routerLink]="['login']">Login</a></li>
+                                }@else {
+                                    <li><a class="dropdown-item" (click)="logout()" >Logout</a></li>
+                                }
+                            </ul>
+                        </div>
+                        <!-- Header User End -->
+                        <!-- Header Cart Start -->
+                        <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
+                            <div class="header-icon"><i class="fi-rr-shopping-bag"></i></div>
+                            <span class="ec-header-count cart-count-lable">{{productsInCart}}</span>
+                        </a>
+                        <!-- Header Cart End -->
+                        
+                        <!-- Header menu Start -->
+                        <a (click)="showSideNav = true" class="ec-header-btn ec-side-toggle d-lg-none">
+                            <i class="fa-solid fa-bars"></i>
+                        </a>
+                        <!-- Header menu End -->
+                    </div>
+                </div>
+                <!-- Header Top responsive Action -->
+            </div>
+        </div>
+    </div>
+    <!-- Ec Header Top  End -->
+    <!-- Ec Header Bottom  Start -->
+    <div class="ec-header-bottom d-none d-lg-block">
+        <div class="container position-relative">
+            <div class="row">
+                <div class="ec-flex">
+                    <!-- Ec Header Logo Start -->
+                    <div class="align-self-center">
+                        <div class="header-logo">
+                            <a href="/"><img src="assets/images/logo/logo.png" alt="Site Logo" /><img
+                                    class="dark-logo" src="assets/images/logo/dark-logo.png" alt="Site Logo"
+                                    style="display: none;" /></a>
+                        </div>
+                    </div>
+                    <!-- Ec Header Logo End -->
+
+                    <!-- Ec Header Search Start -->
+                    <div style="position: relative;" class="align-self-center">
+                        <div class="header-search">
+                            <form class="ec-btn-group-form" action="#">
+                                <input [(ngModel)]="searchTerm" (ngModelChange)="searchProducts()" name="search-products" class="form-control ec-search-bar" placeholder="Search products..."
+                                    type="text">
+                                <button class="submit" type="submit"><i class="fi-rr-search"></i></button>
+                            </form>
+                        </div>
+                        <div style="position: absolute;" id="searchResults" class="searchResults">
+                            @for (product of productsList; track $index) {
+                                <a (click)="productsList = []" [routerLink]="['singleProduct',product.id]">{{product.name}}</a>
+                                <hr>
+                            }
+                        </div>
+                    </div>
+                    <!-- Ec Header Search End -->
+
+                    <!-- Ec Header Button Start -->
+                    <div class="align-self-center">
+                        <div class="ec-header-bottons">
+
+                            <!-- Header User Start -->
+                            <div class="ec-header-user dropdown">
+                                <button (click)="showUser = !showUser" class="dropdown-toggle" data-bs-toggle="dropdown"><i
+                                        class="fi-rr-user"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-right" [ngClass]="{'show': showUser}">
+                                    @if (!isTokenValid) {
+                                        <li><a class="dropdown-item" [routerLink]="['register']">Register</a></li>
+                                        <li><a class="dropdown-item" [routerLink]="['login']">Login</a></li>
+                                    }@else {
+                                        <li><a class="dropdown-item" (click)="logout()" >Logout</a></li>
+                                    }
+                                </ul>
+                            </div>
+                            <!-- Header User End -->
+                            <!-- Header Cart Start -->
+                            <a [routerLink]="['cart']" class="ec-header-btn ec-side-toggle">
+                                <div class="header-icon"><i class="fi-rr-shopping-bag"></i></div>
+                                <span class="ec-header-count cart-count-lable">{{productsInCart}}</span>
+                            </a>
+                            <!-- Header Cart End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ec Header Button End -->
+    <!-- Header responsive Bottom  Start -->
+    <div class="ec-header-bottom d-lg-none">
+        <div class="container position-relative">
+            <div class="row ">
+
+                <!-- Ec Header Logo Start -->
+                <div class="col">
+                    <div class="header-logo">
+                        <a href="index.html"><img src="assets/images/logo/logo.png" alt="Site Logo" /><img
+                                class="dark-logo" src="assets/images/logo/dark-logo.png" alt="Site Logo"
+                                style="display: none;" /></a>
+                    </div>
+                </div>
+                <!-- Ec Header Logo End -->
+                <!-- Ec Header Search Start -->
+                <div style="position: relative;max-width: 340px;" class="col">
+                    <div class="header-search">
+                        <form class="ec-btn-group-form">
+                            <input [(ngModel)]="searchTerm" (ngModelChange)="searchProducts()" name="search-products" class="form-control ec-search-bar" placeholder="Search ..." type="text">
+                            <button class="submit" type="submit"><i class="fi-rr-search"></i></button>
+                        </form>
+                    </div>
+                    <div style="position: absolute;" id="searchResults" class="searchResults">
+                        @for (product of productsList; track $index) {
+                            <a (click)="productsList = []" [routerLink]="['singleProduct',product.id]">{{product.name}}</a>
+                            <hr>
+                        }
+                    </div>
+                </div>
+                <!-- Ec Header Search End -->
+            </div>
+        </div>
+    </div>
+    <!-- Header responsive Bottom  End -->
+    <!-- EC Main Menu Start -->
+    <div id="ec-main-menu-desk" class="d-none d-lg-block sticky-nav">
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-md-12 align-self-center">
+                    <div class="ec-main-menu">
+                        <ul>
+                            <li><a [routerLink]="['/']">Home</a></li>
+                            <li class="dropdown position-static"><a href="javascript:void(0)">Categories</a>
+                                <ul class="mega-menu d-block">
+                                    <li class="d-flex">
+                                        @for (cat of catList.content; track $index) {
+                                            @if (cat.active) {
+                                                <ul class="d-block">
+                                                    <li class="menu_title"><a>{{cat.category}}</a></li>
+                                                    @for (subCat of subCatList; track $index) {
+                                                        @if (cat.id == subCat.category?.id) {
+                                                            @if (subCat.active) {
+                                                                <li>
+                                                                    <a (click)="toProducts(subCat.id)" routerLinkActive="router-link-active" >{{subCat.subCategory}}</a>
+                                                                </li>
+                                                            }
+                                                        }
+                                                    }
+                                                </ul>
+                                            }
+                                        }
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a [routerLink]="['history']">My Orders</a></li>
+                            <li><a [routerLink]="['about-us']">About Us</a></li>
+                            <li><a [routerLink]="['contact-us']">Contact Us</a></li>
+                            <!-- <li><a [routerLink]="['history']">Terms & Conds.</a></li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ec Main Menu End -->
+
+</header>
+<!-- Header End  -->
+<div class="ec-side-cart-overlay" [ngClass]="{'d-block': showSideNav}"></div>
+<div id="ec-mobile-menu" [ngClass]="{'ec-open': showSideNav}" class="ec-side-cart ec-mobile-menu ">
+    <div class="ec-menu-title">
+        <span class="menu_title">Patel Bros</span>
+        <button (click)="showSideNav = false" class="ec-close">×</button>
+    </div>
+    <div class="ec-menu-inner">
+        <div class="ec-menu-content">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li [ngClass]="{'active': showSideCat}"><span (click)="showSideCat = !showSideCat" class="menu-toggle"></span><a href="javascript:void(0)">Categories</a>
+                    @for (cat of catList.content; track $index) {
+                        <ul class="sub-menu"  [ngClass]="{'d-block': showSideCat}">
+                            <li [ngClass]="{'active': showSideSubCat[$index]}" ><span  (click)="showSideSubCat[$index] = !showSideSubCat[$index]" class="menu-toggle"></span>
+                                <a >{{cat.category}}</a>
+                                    <ul [ngClass]="{'d-block': showSideSubCat[$index]}" class="sub-menu">
+                                        @for (subCat of subCatList; track $index) {
+                                            @if (cat.id == subCat.category?.id) {
+                                                @if (subCat.active) {
+                                                        <li><a (click)="toProducts(subCat.id)">{{subCat.subCategory}}</a></li>
+                                                }
+                                            }
+                                        }
+                                    </ul>
+                            </li>
+                        </ul>
+                    }
+                </li>
+                <li><a [routerLink]="['history']">My Orders</a></li>
+                <li><a [routerLink]="['about-us']">About Us</a></li>
+                <li><a [routerLink]="['contact-us']">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="header-res-lan-curr">
+            <!-- Social Start -->
+            <div class="header-res-social">
+                <div class="header-top-social">
+                    <ul class="mb-0">
+                        <li class="list-inline-item"><a class="hdr-facebook" href="#"><i class="ecicon eci-facebook"></i></a></li>
+                        <li class="list-inline-item"><a class="hdr-twitter" href="#"><i class="ecicon eci-twitter"></i></a></li>
+                        <li class="list-inline-item"><a class="hdr-instagram" href="#"><i class="ecicon eci-instagram"></i></a></li>
+                        <li class="list-inline-item"><a class="hdr-linkedin" href="#"><i class="ecicon eci-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Social End -->
+        </div>
+    </div>
+</div>

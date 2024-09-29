@@ -1,0 +1,119 @@
+    <!-- Ec Shop page -->
+    <section class="ec-page-content section-space-p">
+        <div class="container">
+            <div class="row">
+                <div class="ec-shop-rightside col-lg-9 order-lg-last col-md-12 order-md-first margin-b-30">
+                    <!-- Shop Top Start -->
+                    <div class="ec-pro-list-top d-flex justify-content-end">
+                        <div class="col-md-6 ec-sort-select">
+                            <span class="sort-by">Sort by</span>
+                            <div >
+                                <select (change)="filterPoducts($event)" name="ec-select" id="ec-select">
+                                    <option selected disabled>Position</option>
+                                    <option value="1">Name, A to Z</option>
+                                    <option value="2">Name, Z to A</option>
+                                    <option value="3">Price, low to high</option>
+                                    <option value="4">Price, high to low</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Shop Top End -->
+
+                    <!-- Shop content Start -->
+                    <div class="shop-pro-content">
+                        <div class="shop-pro-inner">
+                            <div class="row">
+                                @for (product of productsList.content; track $index) {
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
+                                        <div class="ec-product-tp">
+                                            <div class="ec-product-image">
+                                                <a [routerLink]="['/singleProduct',product.id]" routerLinkActive="router-link-active" >
+                                                    <img src="{{getImage(product.image)}}" class="img-center" alt="">
+                                                </a>
+                                                <span class="ec-product-ribbon">New</span>  
+                                            </div>
+                                            <div class="ec-product-body">
+                                                <h5 class="ec-title text-secondary">{{product.name}}</h5>
+                                                <app-rating [rating]="product.rating || 0" ></app-rating>
+                                                <div class="ec-price">{{product.price | currency}}</div>
+                                                <div class="ec-link-btn">
+                                                    <a class=" ec-add-to-cart" (click)="addToCart(product.id || 0)">add to cart</a>
+                                                </div>
+                                            </div>
+                    
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <!-- Ec Pagination Start -->
+                        <div class="ec-pro-pagination">
+                            <span>Showing {{size * page + 1}} - {{productsList.last ? productsList.totalElements : size*(page + 1)}} of {{productsList.totalElements}} item(s)</span>
+                            <ul class="ec-pro-pagination-inner">
+                                @for (i of [].constructor(productsList.totalPages); track $index) {
+                                    <li><a (click)="goToPage($index)" [ngClass]="{'active': page == $index}" >{{$index + 1}}</a></li>
+                                }
+                                @if (!productsList.last) {
+                                    <li><a class="next" (click)="nextPage()">Next <i class="ecicon eci-angle-right"></i></a></li>
+                                }
+                            </ul>
+                        </div>
+                        <!-- Ec Pagination End -->
+                    </div>
+                    <!--Shop content End -->
+                </div>
+                <!-- Sidebar Area Start -->
+                <div class="ec-shop-leftside col-lg-3 order-lg-first col-md-12 order-md-last">
+                    <div id="shop_sidebar">
+                        <div class="ec-sidebar-heading">
+                            <h1>Filter Products By</h1>
+                        </div>
+                        <div class="ec-sidebar-wrap">
+                            <!-- Sidebar Category Block -->
+                            <div class="ec-sidebar-block">
+                                <div class="ec-sb-title">
+                                    <h3 class="ec-sidebar-title">Category</h3>
+                                </div>
+                                <div class="ec-sb-block-content">
+                                    <ul>
+                                        @for (thirdCat of thirdCatList; track $index) {
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <input class="thirdCategory" (change)="addThirdCat(thirdCat.id || 0)" type="checkbox" id="tc{{thirdCat.id}}" /> 
+                                                    <label class="thirdCatLabel" for="tc{{thirdCat.id}}" >{{thirdCat.thirdCategory}}</label>
+                                                    <span class="checked"></span>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                            <!-- Sidebar Price Block -->
+                            <div class="ec-sidebar-block">
+                                <div class="ec-sb-title">
+                                    <h3 class="ec-sidebar-title">Price</h3>
+                                </div>
+                                <div class="ec-sb-block-content es-price-slider">
+                                    <div class="ec-price-filter">
+                                        <div id="ec-sliderPrice" class="filter__slider-price" data-min="0"
+                                            data-max="250" data-step="10"></div>
+                                        <div class="ec-price-input">
+                                            <label class="filter__label"><input type="text"
+                                                    class="filter__input"></label>
+                                            <span class="ec-price-divider"></span>
+                                            <label class="filter__label"><input type="text"
+                                                    class="filter__input"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Shop page -->

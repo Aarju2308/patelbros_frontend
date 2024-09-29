@@ -1,0 +1,53 @@
+    <!-- Start Register -->
+    <section class="ec-page-content section-space-p">
+        <div class="container">
+            @if (error) {
+                <div class="alert alert-danger text-center">
+                    @for (err of errorMessage; track $index) {
+                        <h5>{{err}}</h5>
+                    }
+                </div>
+            }
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="section-title">
+                        <h2 class="ec-bg-title">Register</h2>
+                        <h2 class="ec-title">Register</h2>
+                        <p class="sub-title mb-3">Best place to buy and sell digital products</p>
+                    </div>
+                </div>
+                <div class="ec-register-wrapper">
+                    <div class="ec-register-container">
+                        <div class="ec-register-form">
+                            <form method="post">
+                                <span class="ec-register-wrap ec-register-half">
+                                    <label>First Name*</label>
+                                    <input [(ngModel)]="registerRequest.firstName" type="text" name="firstname" placeholder="Enter your first name" required />
+                                </span>
+                                <span class="ec-register-wrap ec-register-half">
+                                    <label>Last Name*</label>
+                                    <input [(ngModel)]="registerRequest.lastName" type="text" name="lastname" placeholder="Enter your last name" required />
+                                </span>
+                                <span class="ec-register-wrap ec-register-half">
+                                    <label>Email*</label>
+                                    <input [(ngModel)]="registerRequest.email" type="email" name="email" placeholder="Enter your email add..." required />
+                                </span>
+                                <span class="ec-register-wrap ec-register-half">
+                                    <label>Password *</label>
+                                    <input [(ngModel)]="registerRequest.password" type="password" name="password" placeholder="Enter your phone number"
+                                        required />
+                                </span>
+                                <span class="ec-register-wrap ec-register-btn">
+                                    <button (click)="register()" class="btn btn-primary" type="submit">Register</button>
+                                </span>
+                                <span class="ec-login-wrap ec-login-fp">
+                                    <label><a [routerLink]="['/login']" routerLinkActive="router-link-active">Already have an account? Login Instead</a></label>
+                                </span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Register -->
