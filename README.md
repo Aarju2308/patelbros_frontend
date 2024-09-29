@@ -18,6 +18,12 @@ The following technologies and libraries are used in the development of **PatelB
 - **ngx-print**: For providing a printing service for generating printable order summaries or invoices.
 - **ng-openapi-gen**: A tool to generate Angular services based on an OpenAPI specification.
 
+---
+
+[Backend API Documentation](https://github.com/Aarju2308/patelbros_backend) includes detailed information on the backend's API endpoints, authentication flow, and database setup.
+
+---
+
 ## Key Features
 - **Product Catalog**: Browse products with filtering, sorting, and category-based navigation.
 - **Shopping Cart**: Add items to the cart, adjust quantities, and proceed to checkout.
@@ -115,5 +121,4 @@ Unit tests can be run using **Karma**. The testing framework is already integrat
 ## Contact
 For any questions or support, please contact:
 
-- **Email**: [your-email@example.com]
-- **GitHub**: [your-github-profile-link]
+- **Email**: patelbros_support@gmail.com
