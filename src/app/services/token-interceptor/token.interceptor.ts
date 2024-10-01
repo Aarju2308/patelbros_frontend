@@ -5,7 +5,7 @@ import { TokenService } from '../token/token.service';
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
 
   const tokenServ = inject(TokenService);
-  console.log(!req.url.includes("public") && !req.url.includes("auth");
+  console.log(!req.url.includes("public") && !req.url.includes("auth"));
   if (!req.url.includes("public") && !req.url.includes("auth")) {
     tokenServ.isAuthenticated.subscribe({
       next : (value)=> {
