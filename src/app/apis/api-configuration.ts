@@ -9,8 +9,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApiConfiguration {
-  // rootUrl: string = 'https://patelbrosapi.publicvm.com';
-  rootUrl: string = '//localhost:1323';
+  rootUrl: string = 'https://patelbrosapi.publicvm.com';
+  // rootUrl: string = '//localhost:1323';
 }
 
 /**
