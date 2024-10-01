@@ -43,7 +43,9 @@ To run the application locally, follow these steps:
    ```bash
    npm install
    ```
-3. **Run the application**:
+3. **Install dependencies**:
+   Replace the API Url to your url at api-configuration.ts
+4. **Run the application**:
    ```bash
    npm start
    ```
