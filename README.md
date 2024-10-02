@@ -9,7 +9,7 @@ The following technologies and libraries are used in the development of **PatelB
 
 - **Angular (v17.3.0)**: A framework for building dynamic and responsive web applications.
 - **TypeScript**: The primary programming language for building robust and scalable features.
-- **SCSS (Sassy CSS)**: For structuring and styling the app with modularity and flexibility.
+- **CSS (CSS 3)**: For structuring and styling the app with modularity and flexibility.
 - **RxJS**: For handling asynchronous data streams in the application.
 - **Angular Router**: For managing client-side routing and navigation between pages.
 - **Express (v4.18.2)**: A minimal and flexible Node.js web application framework used for server-side rendering and handling API requests.
